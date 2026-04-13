@@ -67,7 +67,11 @@
       "Bash(find c:/WorkDir/blueberrycode/.github -name *.yml)",
       "Bash(xargs grep:*)",
       "Bash(docker run:*)",
-      "Bash(powershell.exe -Command \"\nCopy-Item 'C:\\\\WorkDir\\\\blueberrycode\\\\packages\\\\opencode\\\\opencode-new.exe' 'C:\\\\ProgramData\\\\chocolatey\\\\lib\\\\opencode\\\\tools\\\\opencode.exe' -Force\nWrite-Host 'Replaced successfully'\nGet-Item 'C:\\\\ProgramData\\\\chocolatey\\\\lib\\\\opencode\\\\tools\\\\opencode.exe' | Select-Object LastWriteTime, Length\n\" 2>&1)"
+      "Bash(powershell.exe -Command \"\nCopy-Item 'C:\\\\WorkDir\\\\blueberrycode\\\\packages\\\\opencode\\\\opencode-new.exe' 'C:\\\\ProgramData\\\\chocolatey\\\\lib\\\\opencode\\\\tools\\\\opencode.exe' -Force\nWrite-Host 'Replaced successfully'\nGet-Item 'C:\\\\ProgramData\\\\chocolatey\\\\lib\\\\opencode\\\\tools\\\\opencode.exe' | Select-Object LastWriteTime, Length\n\" 2>&1)",
+      "Bash(git rm:*)",
+      "Bash(find packages/desktop-electron/resources -name *.ico -o -name *.png)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ]
   }
 }
