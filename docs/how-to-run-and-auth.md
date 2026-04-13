@@ -120,15 +120,20 @@ This produces:
 packages/opencode/dist/opencode-windows-x64/bin/opencode.exe
 ```
 
-### Step 2 — Link the command globally
+### Step 2 — Install globally
 
-Run this once from the repo root so `blueberrycode` becomes available on your PATH:
+Run the install script in **PowerShell** (no admin required):
 
-```bash
-bun link --cwd packages/opencode
+```powershell
+powershell -ExecutionPolicy Bypass -File packages\opencode\script\install-global.ps1
 ```
 
-Verify it works:
+What it does:
+- Copies `opencode.exe` to `%LOCALAPPDATA%\blueberrycode\bin\blueberrycode.exe`
+- Adds that folder to your **user PATH** automatically
+
+**Restart your terminal** after running it, then verify:
+
 ```bash
 blueberrycode --version
 ```
@@ -187,6 +192,6 @@ Run the build first:
 | Start session | `opencode` |
 | Global config | `C:\Users\<you>\.config\opencode\` |
 | Build custom exe | `bun run --cwd packages/opencode script/build-win.ts` |
-| Link `blueberrycode` globally | `bun link --cwd packages/opencode` |
+| Install `blueberrycode` globally | `powershell -ExecutionPolicy Bypass -File packages\opencode\script\install-global.ps1` |
 | Init with custom build | `blueberrycode /init` |
 | Start with custom build | `blueberrycode` |
