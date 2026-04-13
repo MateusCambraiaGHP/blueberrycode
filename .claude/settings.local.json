@@ -76,7 +76,12 @@
       "Bash(git filter-branch:*)",
       "Bash(git stash:*)",
       "Bash(FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch --index-filter \"git rm --cached --ignore-unmatch packages/opencode/opencode-new.exe\" -- eac50f915..HEAD)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(find C:WorkDirblueberrycodepackagesopencodesrcclicmdtui -type f -name *.ts -o -name *.tsx)",
+      "Bash(find C:WorkDirblueberrycode -maxdepth 3 -name *.cmd -o -name *.sh)",
+      "Bash(grep -E \"\\\\.ts$\")",
+      "Bash(xargs -I {} basename {})",
+      "Bash(bun add:*)"
     ]
   }
 }
