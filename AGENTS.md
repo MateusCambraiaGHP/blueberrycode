@@ -126,3 +126,19 @@ const table = sqliteTable("session", {
 ## Type Checking
 
 - Always run `bun typecheck` from package directories (e.g., `packages/opencode`), never `tsc` directly.
+
+## Repository Structure & Operational Notes
+
+- This repository is a monorepo using Bun workspaces as configured in `package.json` under `workspaces`. Key package directories include:
+  - `packages/opencode`
+  - `packages/console`
+  - `packages/sdk/js`
+  - `packages/slack`
+
+- Development servers and entry points are invoked via Bun with explicit working directories. Examples:
+  - `bun run --cwd packages/opencode src/index.ts` to run the main opencode package
+  - `bun --cwd packages/desktop tauri dev` for desktop app development
+  - `bun --cwd packages/app dev` for web app
+  - `bun run --cwd packages/console/app dev` for console app
+
+- The root `package.json` has a `
