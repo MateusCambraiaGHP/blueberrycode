@@ -105,6 +105,74 @@ C:\Users\mateu\.config\opencode
 
 ---
 
+## 6. Using the `blueberrycode` command (custom build)
+
+If you built your own exe from source (see [how-to-build-exe.md](./how-to-build-exe.md)), you can run it directly using the `blueberrycode` command instead of `opencode`.
+
+### Step 1 — Build the exe
+
+```bash
+bun run --cwd packages/opencode script/build-win.ts
+```
+
+This produces:
+```
+packages/opencode/dist/opencode-windows-x64/bin/opencode.exe
+```
+
+### Step 2 — Link the command globally
+
+Run this once from the repo root so `blueberrycode` becomes available on your PATH:
+
+```bash
+bun link --cwd packages/opencode
+```
+
+Verify it works:
+```bash
+blueberrycode --version
+```
+
+### Step 3 — Use `blueberrycode` instead of `opencode`
+
+```bash
+cd C:\path\to\your\project
+blueberrycode /init
+```
+
+For subsequent sessions:
+```bash
+blueberrycode
+```
+
+Auth commands work the same way:
+```bash
+blueberrycode auth login
+blueberrycode auth list
+blueberrycode auth logout
+```
+
+### How it resolves the binary
+
+`blueberrycode` always runs your locally compiled exe at:
+```
+packages/opencode/dist/opencode-windows-x64/bin/opencode.exe
+```
+
+You can override this at any time with the env var:
+```bash
+BLUEBERRYCODE_BIN_PATH=C:\path\to\custom.exe blueberrycode
+```
+
+If the exe is not found (e.g. you haven't built yet), you will see:
+```
+blueberrycode: compiled binary not found at ...
+Run the build first:
+  bun run --cwd packages/opencode script/build-win.ts
+```
+
+---
+
 ## Quick reference
 
 | Task | Command |
@@ -118,3 +186,7 @@ C:\Users\mateu\.config\opencode
 | Init project | `opencode /init` |
 | Start session | `opencode` |
 | Global config | `C:\Users\<you>\.config\opencode\` |
+| Build custom exe | `bun run --cwd packages/opencode script/build-win.ts` |
+| Link `blueberrycode` globally | `bun link --cwd packages/opencode` |
+| Init with custom build | `blueberrycode /init` |
+| Start with custom build | `blueberrycode` |
