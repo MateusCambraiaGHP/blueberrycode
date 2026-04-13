@@ -4,3 +4,8 @@ gen
 app.log
 src/provider/models-snapshot.js
 src/provider/models-snapshot.d.ts
+
+# Heavy build artifacts — never commit these
+*.exe
+*.out
+.build_tmp/
