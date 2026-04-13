@@ -71,7 +71,12 @@
       "Bash(git rm:*)",
       "Bash(find packages/desktop-electron/resources -name *.ico -o -name *.png)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git filter-repo:*)",
+      "Bash(git filter-branch:*)",
+      "Bash(git stash:*)",
+      "Bash(FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch --index-filter \"git rm --cached --ignore-unmatch packages/opencode/opencode-new.exe\" -- eac50f915..HEAD)",
+      "Bash(git push:*)"
     ]
   }
 }
