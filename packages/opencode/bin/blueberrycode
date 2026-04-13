@@ -1,0 +1,41 @@
+#!/usr/bin/env node
+
+const childProcess = require("child_process")
+const fs = require("fs")
+const path = require("path")
+
+function run(target) {
+  const result = childProcess.spawnSync(target, process.argv.slice(2), {
+    stdio: "inherit",
+  })
+  if (result.error) {
+    console.error(result.error.message)
+    process.exit(1)
+  }
+  const code = typeof result.status === "number" ? result.status : 0
+  process.exit(code)
+}
+
+// Allow override via env var
+const envPath = process.env.BLUEBERRYCODE_BIN_PATH
+if (envPath) {
+  run(envPath)
+}
+
+const scriptPath = fs.realpathSync(__filename)
+const scriptDir = path.dirname(scriptPath)
+const pkgDir = path.resolve(scriptDir, "..")
+
+// Point to the compiled exe produced by script/build-win.ts
+const compiled = path.join(pkgDir, "dist", "opencode-windows-x64", "bin", "opencode.exe")
+
+if (!fs.existsSync(compiled)) {
+  console.error(
+    "blueberrycode: compiled binary not found at " + compiled + "\n" +
+    "Run the build first:\n" +
+    "  bun run --cwd packages/opencode script/build-win.ts",
+  )
+  process.exit(1)
+}
+
+run(compiled)
