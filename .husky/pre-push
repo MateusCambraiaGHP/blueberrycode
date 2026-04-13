@@ -17,4 +17,8 @@ if (process.versions.bun !== expectedBunVersion) {
   console.warn(`Warning: Bun version ${process.versions.bun} differs from expected ${expectedBunVersion}`);
 }
 '
-bun typecheck
+# Skip typecheck on Windows — tsgo (TypeScript native preview) cannot resolve
+# its win32-x64 platform binary when invoked via Node.js on Bun workspaces.
+if [ "$OS" != "Windows_NT" ]; then
+  bun typecheck
+fi
