@@ -14,7 +14,35 @@ The Windows binary (`opencode.exe`) is produced by `packages/opencode/script/bui
 | Node / npm | Only needed by some native deps (`node-gyp` is external, not bundled) |
 | Internet access | `generate.ts` fetches the models snapshot from `https://models.dev/api.json` |
 
-Install dependencies from the repo root first:
+### Installing with Chocolatey (Windows)
+
+If you don't have Chocolatey installed yet, open **PowerShell as Administrator** and run:
+
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+```
+
+Then install Bun and Node in the same elevated shell:
+
+```powershell
+choco install bun -y
+choco install nodejs -y
+```
+
+Restart your terminal after installation so the new PATH entries take effect, then verify:
+
+```bash
+bun --version
+node --version
+```
+
+---
+
+## Install repo dependencies
+
+Run this once from the **repo root** before building:
 
 ```bash
 bun install
@@ -127,6 +155,9 @@ The following values are baked into the binary at build time via `define`:
 
 **`generate.ts` fetch fails**
 - Use the `MODELS_DEV_API_JSON` env var to supply a local file (see above).
+
+**`choco` is not recognized**
+- Make sure you ran the Chocolatey install in an **elevated** PowerShell session and restarted the terminal.
 
 **Binary is too large / want to inspect contents**
 - The `.exe` is a Bun standalone binary. You cannot easily unpack it, but you can inspect the source at `packages/opencode/src/index.ts` and trace entrypoints from there.
