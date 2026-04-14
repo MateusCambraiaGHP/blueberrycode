@@ -1,5 +1,5 @@
 # install-global.ps1
-# Installs blueberrycode.exe to %LOCALAPPDATA%\blueberrycode\bin and adds it to the user PATH.
+# Installs pestanacode.exe to %LOCALAPPDATA%\pestanacode\bin and adds it to the user PATH.
 # Run from any directory — paths are resolved relative to this script.
 
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
@@ -11,8 +11,8 @@ if (-not (Test-Path $exeSrc)) {
     exit 1
 }
 
-$installDir = "$env:LOCALAPPDATA\blueberrycode\bin"
-$dest       = "$installDir\blueberrycode.exe"
+$installDir = "$env:LOCALAPPDATA\pestanacode\bin"
+$dest       = "$installDir\pestanacode.exe"
 
 New-Item -ItemType Directory -Force -Path $installDir | Out-Null
 Copy-Item $exeSrc $dest -Force
@@ -28,8 +28,8 @@ if ($userPath -notlike "*$installDir*") {
 }
 
 Write-Host ""
-Write-Host "Done! blueberrycode installed to:"
+Write-Host "Done! pestanacode installed to:"
 Write-Host "  $dest"
 Write-Host ""
 Write-Host "After restarting your terminal, run:"
-Write-Host "  blueberrycode /init"
+Write-Host "  pestanacode /init"

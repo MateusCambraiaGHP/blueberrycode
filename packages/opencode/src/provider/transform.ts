@@ -501,7 +501,8 @@ export namespace ProviderTransform {
 
       case "@ai-sdk/azure":
         // https://v5.ai-sdk.dev/providers/ai-sdk-providers/azure
-        if (id === "o1-mini") return {}
+        // Only reasoning models support reasoningEffort
+        if (id === "o1-mini" || id.includes("gpt-4")) return {}
         const azureEfforts = ["low", "medium", "high"]
         if (id.includes("gpt-5-") || id === "gpt-5") {
           azureEfforts.unshift("minimal")

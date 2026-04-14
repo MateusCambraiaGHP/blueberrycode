@@ -239,11 +239,8 @@ export namespace Provider {
           autoload: false,
           async getModel(sdk: any, modelID: string, options?: Record<string, any>) {
             if (useLanguageModel(sdk)) return sdk.languageModel(modelID)
-            if (options?.["useCompletionUrls"]) {
-              return sdk.chat(modelID)
-            } else {
-              return sdk.responses(modelID)
-            }
+            // Azure doesn't support responses API, use chat instead
+            return sdk.chat(modelID)
           },
           options: {},
           vars(_options) {

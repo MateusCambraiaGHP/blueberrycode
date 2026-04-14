@@ -350,24 +350,24 @@ function App(props: { onSnapshot?: () => Promise<string[]> }) {
     if (!terminalTitleEnabled() || Flag.OPENCODE_DISABLE_TERMINAL_TITLE) return
 
     if (route.data.type === "home") {
-      renderer.setTerminalTitle("BlueBerryCode")
+      renderer.setTerminalTitle("PestanaCode")
       return
     }
 
     if (route.data.type === "session") {
       const session = sync.session.get(route.data.sessionID)
       if (!session || SessionApi.isDefaultTitle(session.title)) {
-        renderer.setTerminalTitle("BlueBerryCode")
+        renderer.setTerminalTitle("PestanaCode")
         return
       }
 
       const title = session.title.length > 40 ? session.title.slice(0, 37) + "..." : session.title
-      renderer.setTerminalTitle(`BBC | ${title}`)
+      renderer.setTerminalTitle(`PC | ${title}`)
       return
     }
 
     if (route.data.type === "plugin") {
-      renderer.setTerminalTitle(`BBC | ${route.data.id}`)
+      renderer.setTerminalTitle(`PC | ${route.data.id}`)
     }
   })
 
